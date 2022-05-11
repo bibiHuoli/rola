@@ -15,5 +15,18 @@ export default async function handler(req, res) {
         console.log(error);
         res.status(500).json({ sucess: false, error });
       }
+      break;
+
+      case 'POST':
+        try {
+          const { namae, email } = req.body;
+          if ((!namae, !email)) throw 'invalid data';
+          const client = await Client.create({ namae, email });
+          res.status(201).json({ sucess: true, data: client });
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({ sucess: false, error });
+        }
+        break;
   }
 }
